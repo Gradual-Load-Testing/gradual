@@ -1,0 +1,27 @@
+# Core dependencies
+gevent>=22.10.2
+websocket-client>=1.6.0
+tabulate>=0.9.0
+requests>=2.31.0
+
+# Development dependencies
+pytest>=7.3.0
+black>=23.3.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.2.0
+build>=0.10.0
+pre-commit>=4.2.0
+types-requests>=2.0.0
+types-gevent>=24.0.0
+types-PyYAML>=6.0.0
+
+# Optional dependencies - install as needed:
+# pip install fastapi>=0.95.0 uvicorn>=0.21.0 pydantic>=1.10.0  # For dashboard
+# pip install bokeh>=3.1.0  # For Bokeh visualization
+# pip install prometheus-client>=0.16.0  # For Prometheus metrics
+# pip install statsd>=4.0.0  # For StatsD metrics
+# pip install redis>=4.5.0 celery>=5.2.0  # For distributed testing
+# pip install requests_kerberos>=0.14.0  # For Kerberos authentication
+# pip install requests_ntlm>=1.2.0  # For NTLM authentication
+# pip install requests_oauthlib>=1.3.1  # For OAuth authentication
