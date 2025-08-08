@@ -1,0 +1,22 @@
+requests:
+  "request1":
+    url: "http://localhost:8000/ping"
+    method: "GET"
+    expected_response_time: 1
+    auth: null
+  "request2":
+    url: "http://localhost:8000/data"
+    method: "GET"
+    expected_response_time: 1
+    auth: null
+  "request3":
+    url: "http://localhost:8000/submit"
+    method: "POST"
+    expected_response_time: 1
+    auth: null
+    params:
+      name: "John Doe"
+      email: "john.doe@example.com"
+      age: 30
+      city: "New York"
+      country: "USA"

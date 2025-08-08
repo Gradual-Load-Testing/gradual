@@ -1,0 +1,24 @@
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: stress_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: stress_user
+      POSTGRES_PASSWORD: stress_password
+      POSTGRES_DB: stress_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  connector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stress_postgres_connector
+    volumes:
+      - ./workdir:/app
+    working_dir: /app

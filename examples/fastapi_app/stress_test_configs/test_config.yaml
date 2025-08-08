@@ -1,0 +1,30 @@
+runs:
+  name: "Test Run"
+  wait_between_phases: 10
+  phases:
+    "phase1":
+      scenarios:
+        "scenario1":
+          requests:
+            - "request1"
+            - "request2"
+          min_concurrency: 1
+          max_concurrency: 10
+          ramp_up_multiply:
+            - 1
+            - 2
+            - 3
+          ramp_up_wait:
+            - 1
+            - 2
+            - 3
+          iterate_through_requests: true
+        "scenario2":
+          requests:
+            - "request3"
+          min_concurrency: 1
+          max_concurrency: 10
+          ramp_up_multiply: 1
+          ramp_up_wait: 1
+          iterate_through_requests: true
+      run_time: 10
