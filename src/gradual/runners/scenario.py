@@ -4,15 +4,17 @@ within a scenario. It handles concurrency, ramp-up, and different types of reque
 """
 
 from logging import info
+
+import gevent
+from tabulate import tabulate
+
 from gradual.configs.scenario import ScenarioConfig
 from gradual.constants.request_types import RequestType
+from gradual.runners.iterators import RequestIterator
 from gradual.runners.request.base import _Request
 from gradual.runners.request.Http import HttpRequest
 from gradual.runners.request.SocketIO import SocketRequest
-from gradual.runners.iterators import RequestIterator
 from gradual.runners.session import HTTPSession
-import gevent
-from tabulate import tabulate
 
 
 class Scenario:
@@ -103,11 +105,35 @@ class Scenario:
                     iterator=iterator,
                 )
             else:
-                request = _Request(
-                    scenario_name=self.scenario_config.name,
-                    run_once=self.scenario_config.run_once,
-                    iterator=iterator,
+                # Create a dynamic _Request subclass with the user's run function
+                custom_function = current_request_type.context.get("function")
+                completion_callback = current_request_type.context.get(
+                    "completion_callback"
                 )
+
+                if custom_function:
+                    # Create a dynamic class that inherits from _Request
+                    class CustomRequestClass(_Request):
+                        def run(self):
+                            return custom_function()  # noqa: B023
+
+                        def on_request_completion(self, *args, **kwargs):
+                            if completion_callback:  # noqa: B023
+                                completion_callback()  # noqa: B023
+
+                    request = CustomRequestClass(
+                        scenario_name=self.scenario_config.name,
+                        run_once=self.scenario_config.run_once,
+                        iterator=iterator,
+                    )
+
+                else:
+                    request = _Request(
+                        scenario_name=self.scenario_config.name,
+                        run_once=self.scenario_config.run_once,
+                        iterator=iterator,
+                    )
+
             self.running_request_tasks.append(gevent.spawn(request.run))
             current_concurrency += 1
             self.requests.append(request)
@@ -130,7 +156,8 @@ class Scenario:
         5. Provides detailed logging of execution progress
         """
         info(
-            f"Starting the testiung with minimum concurrency i.e., {self.scenario_config.min_concurrency}, scenario: {self.scenario_config.name}"
+            f"Starting the testiung with minimum concurrency i.e., "
+            f"{self.scenario_config.min_concurrency}, scenario: {self.scenario_config.name}"
         )
 
         # Current index of ramp up and ramp up wait array.
@@ -153,16 +180,22 @@ class Scenario:
 
             # Calculating by how much we have to ramp up in this iteration.
             if self.scenario_config.multiply:
-                # Suppose we want to ramp up the total requests by 2x and there are already x requests running in an infinite loop.
-                # Then, total requests need to be added is 2x = already_running_request(x) * (multiplication_facotr(2) -1 ) to make the concurrency 2x.
+                # Suppose we want to ramp up the total requests by 2x and
+                # there are already x requests running in an infinite loop.
+                # Then, total requests need to be added is
+                # 2x = already_running_request(x) * (multiplication_facotr(2) -1 )
+                # to make the concurrency 2x.
                 if not self.scenario_config.run_once:
                     ramp_up_val = len(self.running_request_tasks) * (
                         self.scenario_config.ramp_up[ramp_up_idx] - 1
                     )
 
-                # Suppose we want to ramp up the total requests by 2x and there are already x requests with run_once True.
+                # Suppose we want to ramp up the total requests by 2x and
+                # there are already x requests with run_once True.
                 # That means we are ramping up after the requests are completed.
-                # Then, total requests needs to be added is 2x = already_running_request(x) * (multiplication_facotr(2)) to make the concurrency 2x.
+                # Then, total requests needs to be added is
+                # 2x = already_running_request(x) * (multiplication_facotr(2))
+                # to make the concurrency 2x.
                 else:
                     ramp_up_val = len(self.running_request_tasks) * (
                         self.scenario_config.ramp_up[ramp_up_idx]

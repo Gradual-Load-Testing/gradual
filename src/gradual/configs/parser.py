@@ -10,9 +10,10 @@ from pathlib import Path
 
 import yaml
 
+from gradual.configs.phase import PhaseConfig
+from gradual.configs.plugin_loader import load_request_configs_from_file
 from gradual.configs.request import RequestConfig
 from gradual.configs.scenario import ScenarioConfig
-from gradual.configs.phase import PhaseConfig
 from gradual.configs.validate import assert_not_empty, validate_min_concurrency
 
 
@@ -160,9 +161,16 @@ class Parser:
                 request_configs = []
 
                 if scenario_data["requests"] == "FROM_REQUEST_YAML_FILE":
-                    request_configs = self.read_request_file(
-                        scenario_data["request_file"]
-                    )
+                    request_file_path = scenario_data["request_file"]
+                    # Check if it's a Python file
+                    if request_file_path.endswith(".py"):
+                        request_configs = load_request_configs_from_file(
+                            request_file_path
+                        )
+                    else:
+                        request_configs = self.read_request_file(
+                            Path(request_file_path)
+                        )
                 else:
                     for scenario_request_name in scenario_data["requests"]:
                         request = params_config["requests"][scenario_request_name]

@@ -1,7 +1,7 @@
 """
 The request module provides configuration classes and utilities for managing API request
 configurations in the stress testing framework. It includes support for different
-request types (HTTP, WebSocket) and their specific parameters.
+request types (HTTP, WebSocket, Custom) and their specific parameters.
 """
 
 from dataclasses import dataclass
@@ -34,6 +34,7 @@ def check_websocket_or_http(url):
         return RequestType.http
     if url_type in RequestType.websocket.value:
         return RequestType.websocket
+    return None
 
 
 @dataclass
@@ -42,8 +43,8 @@ class RequestConfig:
     Configuration class for API requests in stress testing.
 
     This class defines the structure and parameters for individual API requests,
-    supporting both HTTP and WebSocket protocols. It includes validation and
-    automatic type detection based on the URL.
+    supporting HTTP, WebSocket, and custom protocols. It includes validation and
+    automatic type detection based on the URL, while respecting explicitly set types.
 
     Attributes:
         name (str): Unique identifier for this request configuration
@@ -53,7 +54,7 @@ class RequestConfig:
         context (Optional[dict[str, Any]]): Additional context for the request
         url (str): Target URL for the request
         auth (Optional[str]): Authentication method to use
-        type (Optional[RequestType]): Type of request (HTTP or WebSocket)
+        type (Optional[RequestType]): Type of request (HTTP, WebSocket, or Custom)
     """
 
     name: str
@@ -63,13 +64,24 @@ class RequestConfig:
     context: Optional[dict[str, Any]] = None
     url: str = ""
     auth: Optional[str] = None
-    type: Optional[RequestType] = RequestType.http
+    type: Optional[RequestType] = None
 
     def __post_init__(self):
         """
         Post-initialization hook to set the request type based on the URL.
-
-        This method is automatically called after initialization to determine
-        the appropriate request type based on the URL protocol.
+        Only auto-detect if no explicit type was provided or if it's the default HTTP type.
         """
-        self.type = check_websocket_or_http(self.url)
+        if self.context is None:
+            self.context = {}
+
+        if self.type is None:
+            # Auto-detect type based on URL
+            detected_type = check_websocket_or_http(self.url)
+            if detected_type:
+                self.type = detected_type
+            else:
+                # If no URL or unrecognized protocol, default to custom
+                self.type = RequestType.custom
+        elif self.type == RequestType.http and not self.url:
+            # If explicitly set to HTTP but no URL, default to custom
+            self.type = RequestType.custom

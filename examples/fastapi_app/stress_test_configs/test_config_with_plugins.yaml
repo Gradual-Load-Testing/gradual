@@ -1,0 +1,21 @@
+runs:
+  name: "Plugin Test Run"
+  wait_between_phases: 5
+  phases:
+    "phase1":
+      scenarios:
+        "custom_requests":
+          requests: "FROM_REQUEST_YAML_FILE"
+          request_file: "custom_requests.py"
+          min_concurrency: 1
+          max_concurrency: 5
+          ramp_up_multiply:
+            - 1
+            - 2
+            - 3
+          ramp_up_wait:
+            - 1
+            - 1
+            - 1
+          iterate_through_requests: true
+      run_time: 30
