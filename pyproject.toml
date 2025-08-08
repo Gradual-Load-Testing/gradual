@@ -125,7 +125,7 @@ strict_optional = true
 warn_redundant_casts = true
 warn_return_any = true
 warn_unused_ignores = true
-disable_error_code = ["no-untyped-def", "import-untyped", "call-arg"]
+disable_error_code = ["no-untyped-def", "import-untyped", "call-arg", "annotation-unchecked"]
 [[tool.mypy.overrides]]
 module = ["requests_kerberos"]
 ignore_missing_imports = true
