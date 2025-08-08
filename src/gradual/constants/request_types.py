@@ -23,4 +23,4 @@ class RequestType(Enum):
 
     websocket = ["wss", "ws"]
     http = ["http", "https"]
-    custom: list[str] = []  # For custom request types that don't follow URL patterns
+    custom: list = []  # For custom request types that don't follow URL patterns

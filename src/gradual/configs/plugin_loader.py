@@ -13,6 +13,7 @@ import importlib.util
 import inspect
 import sys
 from pathlib import Path
+from types import ModuleType
 from typing import Any, Callable, Dict, List, Optional
 
 from gradual.configs.request import RequestConfig
@@ -69,7 +70,7 @@ class PluginLoader:
         # Create RequestConfig objects
         return self._create_request_configs()
 
-    def _discover_functions(self, module: Any) -> None:
+    def _discover_functions(self, module: ModuleType) -> None:
         """
         Discover request functions and completion callbacks in a module.
 
