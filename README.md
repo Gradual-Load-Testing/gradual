@@ -39,7 +39,7 @@ python -m build
 
 ```bash
 # Run a stress test using a YAML configuration
-stress-run examples/api_test.yaml --users 500 --duration 60
+stress-run --test_config examples/api_test.yaml --request_config examples/requests.yaml
 
 # Start the monitoring dashboard
 stress-dashboard --mode websocket  # or --mode bokeh
