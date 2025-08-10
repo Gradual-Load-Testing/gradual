@@ -290,6 +290,94 @@ runs:
       run_time: 120
 ```
 
+## Custom Protocol Handlers
+
+Gradual supports custom protocol handlers for specialized testing scenarios. You can extend the framework to handle custom protocols beyond HTTP.
+
+### Creating Custom Handlers
+
+```python
+from gradual.base import BaseProtocolHandler
+
+class CustomProtocolHandler(BaseProtocolHandler):
+    def __init__(self, config):
+        super().__init__(config)
+        # Custom initialization
+    
+    def execute_request(self, request_data):
+        # Custom protocol implementation
+        # Return response data
+        return {"status": "success", "data": request_data}
+    
+    def validate_response(self, response):
+        # Custom validation logic
+        return True
+```
+
+### Registering Custom Handlers
+
+```python
+from gradual.runners import TestRunner
+
+# Register custom handler
+runner = TestRunner(config)
+runner.register_protocol("custom", CustomProtocolHandler)
+
+# Use in configuration
+scenario = {
+    "protocol": "custom",
+    "config": {...}
+}
+```
+
+## Distributed Testing
+
+Gradual supports distributed testing for large-scale load testing across multiple machines.
+
+### Distributed Architecture
+
+```yaml
+# Distributed test configuration
+runs:
+  name: "Distributed Load Test"
+  distributed:
+    enabled: true
+    coordinator: "192.168.1.100:6379"  # Redis coordinator
+    workers:
+      - "192.168.1.101:8080"
+      - "192.168.1.102:8080"
+      - "192.168.1.103:8080"
+  phases:
+    "distributed_phase":
+      scenarios:
+        "distributed_scenario":
+          requests:
+            - "api_request"
+          min_concurrency: 100
+          max_concurrency: 1000
+          ramp_up_multiply: [100, 250, 500, 750, 1000]
+          ramp_up_wait: [30, 30, 30, 30, 30]
+          iterate_through_requests: true
+      run_time: 600
+```
+
+### Coordinator Setup
+
+```bash
+# Start Redis coordinator
+redis-server --port 6379
+
+# Start worker nodes
+stress-run --worker --coordinator redis://192.168.1.100:6379 --port 8080
+```
+
+### Benefits of Distributed Testing
+
+- **Higher Load Capacity**: Distribute load across multiple machines
+- **Geographic Distribution**: Test from different locations
+- **Resource Scaling**: Scale horizontally without single machine limits
+- **Realistic Scenarios**: Simulate real-world distributed traffic
+
 ## Troubleshooting
 
 ### Common Issues

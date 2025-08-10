@@ -20,6 +20,21 @@ theme:
     - search.share
     - content.code.copy
     - content.code.annotate
+    - content.code.select
+    - content.tabs.link
+    - content.tabs.remember
+    - content.tabs.tabs
+    - content.tabs.tabs.sticky
+    - content.tabs.tabs.sticky.primary
+    - content.tabs.tabs.sticky.secondary
+    - content.tabs.tabs.sticky.tertiary
+    - content.tabs.tabs.sticky.quaternary
+    - content.tabs.tabs.sticky.quinary
+    - content.tabs.tabs.sticky.senary
+    - content.tabs.tabs.sticky.septenary
+    - content.tabs.tabs.sticky.octonary
+    - content.tabs.tabs.sticky.nonary
+    - content.tabs.tabs.sticky.denary
   palette:
     - scheme: default
       primary: indigo
@@ -55,7 +70,7 @@ plugins:
             docstring_style: google
             preload_modules: [gradual]
             filters: ["!^_"]
-  - mermaid2
+  # - mermaid  # Using Material theme's built-in Mermaid support instead
 
 markdown_extensions:
   - admonition
@@ -81,14 +96,6 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid
-            # The above 'format' line causes a YAML error if the Python object is not available.
-            # To avoid the error, you can remove the 'format' line if you don't need custom formatting,
-            # or ensure the Python object is importable in your environment.
-            # If you want to avoid the error and still use mermaid, you can just use:
-            # - name: mermaid
-            #   class: mermaid
-
 
   - pymdownx.tabbed:
       alternate_style: true

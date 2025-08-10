@@ -11,8 +11,8 @@ This page contains the API documentation for the `gradual.reporting` module.
         heading_level: 2
         members_order: source
         docstring_style: google
-        filters: ["!^_"]
+        filters: ["!^_", "!^gradual.reporting.stats", "!^gradual.reporting.logger", "!^gradual.reporting.adapters"]
         preload_modules: [gradual.reporting]
         merge_init_into_class: true
-        show_submodules: true
+        show_submodules: false
         show_if_no_docstring: true
