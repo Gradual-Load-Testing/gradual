@@ -649,7 +649,7 @@ class SimpleDashboard:
 
 ## Next Steps
 
-- Explore the [API Reference](api/) for detailed technical information
+- Explore the [API Reference](/gradual/api/overview/) for detailed technical information
 - Read the [User Guide](user_guide.md) for comprehensive usage instructions
 - Check the [Development Guide](dev_guide.md) for contribution guidelines
 - Join the [community discussions](https://github.com/Gradual-Load-Testing/gradual/discussions)
