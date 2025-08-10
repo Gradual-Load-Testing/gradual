@@ -4,7 +4,7 @@ Get up and running with Gradual stress testing in minutes using the included sam
 
 ## Prerequisites
 
-- Python 3.8 or higher
+- Python 3.9 or higher
 - pip package manager
 - Basic knowledge of YAML configuration files
 
@@ -32,8 +32,9 @@ cd examples/fastapi_app/stress_test_configs
 ```
 
 You'll find two files:
+
 - `test_config.yaml` - Defines the test structure
-- `request_config.yaml` - Defines the HTTP requests
+- `request_config.yaml` - Defines the HTTP and WebSocket requests
 
 ### 2. Understand the Configuration
 
@@ -76,10 +77,11 @@ requests:
 
 ```bash
 # From the examples/fastapi_app directory
-stress-run stress_test_configs/test_config.yaml
+stress-run --test_config stress_test_configs/test_config.yaml
 ```
 
 **What Happens:**
+
 1. Gradual reads the test configuration
 2. Starts with 1 concurrent request
 3. Ramp-up: 1 → 2 → 3 concurrent requests (waiting 1, 2, 3 seconds between steps)
@@ -99,6 +101,7 @@ Then open your browser to `http://localhost:8080` to see real-time metrics.
 ## Understanding the Results
 
 After the test completes, you'll see:
+
 - **Total Requests**: Number of requests made
 - **Success Rate**: Percentage of successful requests
 - **Response Times**: Average, 95th percentile, 99th percentile
@@ -152,9 +155,9 @@ requests:
       email: "test@example.com"
 ```
 
-### Test Different Load Patterns
+## Test Different Load Patterns
 
-**Spike Test** (sudden load increase):
+### Spike Test (sudden load increase):
 ```yaml
 scenarios:
   "spike_test":
@@ -165,7 +168,7 @@ scenarios:
     iterate_through_requests: true
 ```
 
-**Gradual Ramp-up** (steady increase):
+### Gradual Ramp-up (steady increase):
 ```yaml
 scenarios:
   "gradual_test":
@@ -176,7 +179,7 @@ scenarios:
     iterate_through_requests: true
 ```
 
-**Steady State** (constant load):
+### Steady State (constant load):
 ```yaml
 scenarios:
   "steady_test":
@@ -245,12 +248,14 @@ python -c "import yaml; yaml.safe_load(open('config.yaml'))"
 ## Congratulations!
 
 You've successfully run your first stress test with Gradual! You now understand:
+
 - How to configure tests using YAML files
 - How to run stress tests from the command line
 - How to monitor tests in real-time
 - How to customize test parameters
 
 Continue exploring the documentation to learn about advanced features like:
+
 - Multi-phase testing
 - Authentication
 - Custom protocol handlers

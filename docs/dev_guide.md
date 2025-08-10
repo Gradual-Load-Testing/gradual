@@ -275,7 +275,7 @@ class Parser:
 The framework expects two main configuration files:
 
 1. **Test Configuration**: Defines test phases, scenarios, and timing
-2. **Request Configuration**: Defines individual HTTP requests and parameters
+2. **Request Configuration**: Defines individual HTTP and WebSocket requests and parameters
 
 Example test configuration:
 

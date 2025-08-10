@@ -9,7 +9,7 @@ This document provides a comprehensive reference for all configuration options a
 Gradual uses a two-file configuration system:
 
 1. **Test Configuration** (`test_config.yaml`) - Defines the overall test structure, phases, and scenarios
-2. **Request Configuration** (`request_config.yaml`) - Defines individual HTTP requests and their parameters
+2. **Request Configuration** (`request_config.yaml`) - Defines individual HTTP and WebSocket requests and their parameters
 
 ## Command-Line Usage
 
@@ -23,8 +23,8 @@ stress-run --test_config <test_config_file> [--request_config <request_config_fi
 
 | Argument | Type | Required | Description |
 |----------|------|----------|-------------|
-| `--test_config` | path | Yes | Path to the main test configuration file (YAML) |
-| `--request_config` | path | No | Path to the request configuration file (YAML). If not provided, requests must be defined inline in the test configuration. |
+| `test_config` | path | Yes | Path to the main test configuration file (YAML) |
+| `request_config` | path | No | Path to the request configuration file (YAML). If not provided, requests must be defined inline in the test configuration. |
 
 ### Examples
 
@@ -66,6 +66,7 @@ The current CLI implementation is intentionally simple and focused:
 - **No report generation**: Use the dashboard for real-time monitoring and analysis
 
 This design ensures that:
+
 - Tests are reproducible and version-controlled
 - Configuration is explicit and documented
 - Test behavior is consistent across different environments
@@ -91,6 +92,7 @@ parser.add_argument(
 ```
 
 This simplicity allows for:
+
 - Easy integration with CI/CD pipelines
 - Consistent behavior across different environments
 - Clear separation of concerns between CLI and configuration
@@ -154,12 +156,12 @@ Scenarios define specific test patterns with their own concurrency and ramp-up s
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `requests` | list[string] | Yes | List of request names (must match request config) |
+| `requests` | list[string] or "FROM_REQUEST_YAML_FILE" | Yes | List of request names (must match request config) or "FROM_REQUEST_YAML_FILE" to use all requests from request config |
 | `min_concurrency` | integer | Yes | Starting number of concurrent requests |
 | `max_concurrency` | integer | Yes | Maximum number of concurrent requests |
-| `ramp_up_multiply` | integer or list[integer] | No* | Multipliers for gradual request increase |
-| `ramp_up_add` | integer or list[integer] | No* | Additive values for gradual request increase |
-| `ramp_up_wait` | integer or list[integer] | No | Wait time between ramp-up steps in seconds (default: [0.1]) |
+| `ramp_up_multiply` | integer or list[integer] | No* | [Multiplicative Ramp-up](#multiplicative-ramp-up): Multipliers for gradually increasing concurrency. |
+| `ramp_up_add` | integer or list[integer] | No* | [Additive Ramp-up](#additive-ramp-up): Additive values for gradually increasing concurrency. |
+| `ramp_up_wait` | integer or list[integer] | No | Wait time between ramp-up steps in seconds (default: [0.1]). |
 | `iterate_through_requests` | boolean | No | Whether to cycle through requests sequentially (default: false) |
 | `run_once` | boolean | No | Whether to run the scenario only once (default: false) |
 
@@ -167,7 +169,7 @@ Scenarios define specific test patterns with their own concurrency and ramp-up s
 
 ## Request Configuration File
 
-The request configuration file defines individual HTTP requests that can be referenced by scenarios.
+The request configuration file defines individual HTTP and WebSocket requests that can be referenced by scenarios. The system supports both traditional HTTP requests and WebSocket connections for real-time communication testing. Additionally, a plugin feature is in development that will allow users to run custom I/O requests based on their specific requirements.
 
 ### Structure
 
@@ -186,11 +188,41 @@ requests:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `url` | string | Yes | Full URL for the request |
-| `method` | string | Yes | HTTP method (GET, POST, PUT, DELETE, etc.) |
+| `url` | string | Yes | Full URL for the request (HTTP) or WebSocket endpoint (ws:// or wss://) |
+| `method` | string | Yes | HTTP method (GET, POST, PUT, DELETE, etc.) or "WEBSOCKET" for WebSocket connections |
 | `expected_response_time` | number | Yes | Expected response time in seconds |
 | `auth` | object/null | No | Authentication configuration (null for none) |
 | `params` | object | No | Request parameters (for GET) or body data (for POST/PUT) |
+| `websocket_config` | object | No | WebSocket-specific configuration (only for WebSocket requests) |
+
+**Note:** For WebSocket requests, set `method: "WEBSOCKET"` and optionally include `websocket_config` for custom WebSocket behavior. The plugin feature will provide additional request types and custom I/O capabilities.
+
+### WebSocket Configuration
+
+For WebSocket requests, you can specify additional configuration options:
+
+```yaml
+requests:
+  "websocket_test":
+    url: "ws://localhost:8080/ws"
+    method: "WEBSOCKET"
+    expected_response_time: 2.0
+    websocket_config:
+      message_interval: 1.0  # Send message every 1 second
+      max_messages: 100      # Maximum messages to send
+      message_template: "Test message {counter}"
+      close_after: 60        # Close connection after 60 seconds
+```
+
+### Plugin Feature (Work in Progress)
+
+The plugin system is currently under development and will enable users to:
+- Create custom request types beyond HTTP and WebSocket
+- Implement custom I/O operations (file I/O, database operations, etc.)
+- Extend the system with domain-specific testing capabilities
+- Integrate with external systems and APIs
+
+This feature will provide a flexible framework for testing various types of systems and protocols.
 
 ## Ramp-up Strategies
 
@@ -206,11 +238,18 @@ ramp_up_wait: [5, 5, 5, 5, 5]
 ```
 
 **Execution Flow:**
-1. Start with 1 concurrent request
-2. Wait 5 seconds, then multiply by 2 = 2 concurrent requests
-3. Wait 5 seconds, then multiply by 4 = 8 concurrent requests
-4. Wait 5 seconds, then multiply by 8 = 64 concurrent requests
-5. Wait 5 seconds, then multiply by 16 = 1024 concurrent requests
+
+```mermaid
+flowchart LR
+    A[Start: 1 request] --> B[Wait 5s] --> C[Multiply by 2<br/>Now: 2 requests] --> D[Wait 5s] --> E[Multiply by 4<br/>Now: 8 requests] --> F[Wait 5s] --> G[Multiply by 8<br/>Now: 64 requests] --> H[Wait 5s] --> I[Multiply by 16<br/>Now: 1024 requests]
+    
+    style A fill:#e1f5fe
+    style I fill:#ffebee
+    style B fill:#f3e5f5
+    style D fill:#f3e5f5
+    style F fill:#f3e5f5
+    style H fill:#f3e5f5
+```
 
 ### Additive Ramp-up
 
@@ -222,16 +261,25 @@ ramp_up_wait: [2, 2, 2, 2, 2]
 ```
 
 **Execution Flow:**
-1. Start with 1 concurrent request
-2. Wait 2 seconds, then add 1 = 2 concurrent requests
-3. Wait 2 seconds, then add 2 = 4 concurrent requests
-4. Wait 2 seconds, then add 3 = 7 concurrent requests
-5. Wait 2 seconds, then add 4 = 11 concurrent requests
-6. Wait 2 seconds, then add 5 = 16 concurrent requests
+
+```mermaid
+flowchart LR
+    A[Start: 1 request] --> B[Wait 2s] --> C[Add 1<br/>Now: 2 requests] --> D[Wait 2s] --> E[Add 2<br/>Now: 4 requests] --> F[Wait 2s] --> G[Add 3<br/>Now: 7 requests] --> H[Wait 2s] --> I[Add 4<br/>Now: 11 requests] --> J[Wait 2s] --> K[Add 5<br/>Now: 16 requests]
+    
+    style A fill:#e1f5fe
+    style K fill:#ffebee
+    style B fill:#f3e5f5
+    style D fill:#f3e5f5
+    style F fill:#f3e5f5
+    style H fill:#f3e5f5
+    style J fill:#f3e5f5
+```
+
 
 ### Ramp-up Wait Times
 
 The `ramp_up_wait` field can be:
+
 - **Single value**: Applied to all ramp-up steps
 - **List of values**: Applied to each ramp-up step individually
 
@@ -265,6 +313,34 @@ runs:
           ramp_up_wait: [10, 10, 10, 10, 10, 10]
           iterate_through_requests: true
       run_time: 300
+
+# Mixed HTTP and WebSocket test
+runs:
+  name: "Mixed Protocol Test"
+  wait_between_phases: 5
+  phases:
+    "http_phase":
+      scenarios:
+        "http_scenario":
+          requests:
+            - "api_endpoint"
+            - "data_fetch"
+          min_concurrency: 10
+          max_concurrency: 100
+          ramp_up_multiply: [1, 2, 4, 8, 16, 32, 64, 100]
+          ramp_up_wait: 5
+      run_time: 120
+    "websocket_phase":
+      scenarios:
+        "websocket_scenario":
+          requests:
+            - "websocket_connection"
+            - "realtime_data"
+          min_concurrency: 5
+          max_concurrency: 50
+          ramp_up_add: [5, 10, 15, 20]
+          ramp_up_wait: 10
+      run_time: 180
 ```
 
 ```yaml

@@ -55,11 +55,9 @@ graph TB
 - **[User Guide](user_guide.md)**: Learn how to use Gradual for stress testing
 - **[Configuration Reference](configuration_reference.md)**: Complete configuration options and examples
 - **[Development Guide](dev_guide.md)**: Contribute to the framework development
-- **[API Reference](api/)**: Complete API documentation
+- **[API Reference](api/overview)**: Complete API documentation
 - **[Examples](examples.md)**: Real-world usage examples
 - **[Contributing](contributing.md)**: How to contribute to the project
-
-> **💡 New!** The **Configuration** tab in the navigation provides a dedicated reference for all configuration options, examples, and best practices.
 
 ## Getting Help
 
@@ -70,4 +68,4 @@ graph TB
 
 ## License
 
-Gradual is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+Gradual is licensed under the MIT License. See the [LICENSE](https://github.com/Gradual-Load-Testing/gradual/blob/main/LICENSE) file for details.

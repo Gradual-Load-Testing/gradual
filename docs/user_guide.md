@@ -29,7 +29,7 @@ stress-dashboard --mode bokeh --port 8080
 Gradual uses a two-file configuration system that provides flexibility and clarity:
 
 1. **Test Configuration** (`test_config.yaml`) - Defines test structure, phases, and scenarios
-2. **Request Configuration** (`request_config.yaml`) - Defines individual HTTP requests
+2. **Request Configuration** (`request_config.yaml`) - Defines individual HTTP and WebSocket requests
 
 > **📖 💡 Need detailed configuration options? Check out the dedicated [Configuration Reference](configuration_reference.md) tab in the navigation for a complete guide to all available settings, examples, and best practices.**
 
@@ -74,7 +74,7 @@ runs:
 
 ### Request Configuration Structure
 
-The request configuration file defines individual HTTP requests:
+The request configuration file defines individual HTTP and WebSocket requests:
 
 ```yaml
 requests:
@@ -169,6 +169,7 @@ When `iterate_through_requests: true`, Gradual will cycle through the requests i
 ### Phase Sequencing
 
 Phases run sequentially with the specified `wait_between_phases` delay. This allows you to:
+
 - Test different load patterns
 - Implement complex test scenarios
 - Allow system recovery between phases
@@ -196,10 +197,6 @@ request_file: path/to/requests.yaml
 - **Gradual Increase**: Use ramp-up to avoid overwhelming the system
 - **Monitor Performance**: Watch for performance degradation during ramp-up
 - **Realistic Timing**: Set appropriate wait times between ramp-up steps
-
----
-
-> **📖 💡 Ready to dive deeper into configuration? The [Configuration Reference](configuration_reference.md) tab contains comprehensive examples, advanced options, validation rules, troubleshooting tips, and best practices for complex scenarios.**
 
 ### 3. Configuration Management
 
@@ -403,8 +400,6 @@ stress-run --test_config my_test.yaml --request_config requests.yaml
 # Run with only test configuration (requests defined inline)
 stress-run --test_config my_test.yaml
 ```
-
-> **⚠️ Note:** All test parameters must be defined in the YAML configuration files. The CLI does not support command-line overrides.
 
 ## Next Steps
 
