@@ -32,18 +32,21 @@ stress-dashboard --mode bokeh
 
 ## Architecture Overview
 
+
 ```mermaid
 graph TB
-    A[User Configuration] --> B[Test Runner]
-    B --> C[Load Generator]
-    C --> D[Target System]
-    D --> E[Metrics Collector]
-    E --> F[Real-time Dashboard]
-    E --> G[Report Generator]
+    A[Test Configuration] --> B[Configuration Parser]
+    B --> C[Orchestrator]
+    C --> D[Phase Runner]
+    D --> E[Scenario Runner]
+    E --> F[Request Execution]
     
-    H[Authentication] --> C
-    I[Protocol Handlers] --> C
-    J[Result Storage] --> G
+    G[Reporting] --> H[Metrics Collection]
+    G --> I[Results Output]
+    
+    J[Configuration Files] --> B
+    K[YAML Parser] --> B
+    L[Validation] --> B
 ```
 
 ## Documentation Sections
