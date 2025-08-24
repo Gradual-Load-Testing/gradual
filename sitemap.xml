@@ -1,131 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/configuration_reference/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/configuration_reference/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/contributing/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/contributing/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/dev_guide/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/dev_guide/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/examples/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/examples/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/getting_started/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/getting_started/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/installation/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/installation/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/quick_start/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/quick_start/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/user_guide/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/user_guide/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/Http/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/Http/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/SocketIO/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/SocketIO/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/adapters/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/adapters/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/base/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/base/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/configs/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/configs/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/constants/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/constants/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/exceptions/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/exceptions/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/iterators/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/iterators/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/logger/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/logger/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/logging/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/logging/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/orchestrator/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/orchestrator/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/overview/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/overview/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/parser/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/parser/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/phase/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/phase/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/reporting/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/reporting/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/request/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/request/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/request_types/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/request_types/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/runner/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/runner/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/runners/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/runners/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/scenario/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/scenario/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/session/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/session/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/stats/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/stats/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
     <url>
-         <loc>https://gradual-load-testing.github.io/gradual/api/validate/</loc>
+         <loc>https://gradual-load-testing.github.io/Gradual/api/validate/</loc>
          <lastmod>2025-08-24</lastmod>
     </url>
 </urlset>
