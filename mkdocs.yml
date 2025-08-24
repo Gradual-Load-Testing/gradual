@@ -1,10 +1,10 @@
 site_name: Gradual - Stress Testing Framework
 site_description: A comprehensive Python stress testing framework for applications and systems
 site_author: Gradual Load Testing Team
-site_url: https://gradual-load-testing.github.io/Gradual
+site_url: https://gradual-load-testing.github.io/gradual
 
-repo_name: Gradual-Load-Testing/Gradual
-repo_url: https://github.com/Gradual-Load-Testing/Gradual
+repo_name: Gradual-Load-Testing/gradual
+repo_url: https://github.com/Gradual-Load-Testing/gradual
 edit_uri: edit/main/docs/
 
 theme:

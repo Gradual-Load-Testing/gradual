@@ -233,6 +233,6 @@ After successful installation:
 
 If you encounter installation issues:
 
-- Check the [GitHub Issues](https://github.com/Gradual-Load-Testing/Gradual/issues)
+- Check the [GitHub Issues](https://github.com/Gradual-Load-Testing/gradual/issues)
 - Review the [Troubleshooting section](user_guide.md#troubleshooting)
-- Join the [community discussions](https://github.com/Gradual-Load-Testing/Gradual/discussions)
+- Join the [community discussions](https://github.com/Gradual-Load-Testing/gradual/discussions)

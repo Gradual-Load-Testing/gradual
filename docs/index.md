@@ -62,10 +62,10 @@ graph TB
 ## Getting Help
 
 - 📖 **Documentation**: This site contains comprehensive guides
-- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/Gradual-Load-Testing/Gradual/issues)
-- 💬 **Discussions**: Join the conversation on [GitHub Discussions](https://github.com/Gradual-Load-Testing/Gradual/discussions)
+- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/Gradual-Load-Testing/gradual/issues)
+- 💬 **Discussions**: Join the conversation on [GitHub Discussions](https://github.com/Gradual-Load-Testing/gradual/discussions)
 - 📧 **Contact**: Reach out to the maintainers
 
 ## License
 
-Gradual is licensed under the MIT License. See the [LICENSE](https://github.com/Gradual-Load-Testing/Gradual/blob/main/LICENSE) file for details.
+Gradual is licensed under the MIT License. See the [LICENSE](https://github.com/Gradual-Load-Testing/gradual/blob/main/LICENSE) file for details.
