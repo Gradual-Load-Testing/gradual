@@ -243,13 +243,17 @@ ramp_up_wait: [5, 5, 5, 5, 5]
 flowchart LR
     A[Start: 1 request] --> B[Wait 5s] --> C[Multiply by 2<br/>Now: 2 requests] --> D[Wait 5s] --> E[Multiply by 4<br/>Now: 8 requests] --> F[Wait 5s] --> G[Multiply by 8<br/>Now: 64 requests] --> H[Wait 5s] --> I[Multiply by 16<br/>Now: 1024 requests]
     
-    style A fill:#e1f5fe
-    style I fill:#ffebee
-    style B fill:#f3e5f5
-    style D fill:#f3e5f5
-    style F fill:#f3e5f5
-    style H fill:#f3e5f5
+    style A fill:#e1f5fe,font-size:50px
+    style I fill:#ffebee,font-size:50px
+    style B fill:#f3e5f5,font-size:50px
+    style D fill:#f3e5f5,font-size:50px
+    style F fill:#f3e5f5,font-size:50px
+    style H fill:#f3e5f5,font-size:50px
+    style C fill:#f9f9f9,font-size:50px
+    style E fill:#f9f9f9,font-size:50px
+    style G fill:#f9f9f9,font-size:50px
 ```
+
 
 ### Additive Ramp-up
 
@@ -266,13 +270,17 @@ ramp_up_wait: [2, 2, 2, 2, 2]
 flowchart LR
     A[Start: 1 request] --> B[Wait 2s] --> C[Add 1<br/>Now: 2 requests] --> D[Wait 2s] --> E[Add 2<br/>Now: 4 requests] --> F[Wait 2s] --> G[Add 3<br/>Now: 7 requests] --> H[Wait 2s] --> I[Add 4<br/>Now: 11 requests] --> J[Wait 2s] --> K[Add 5<br/>Now: 16 requests]
     
-    style A fill:#e1f5fe
-    style K fill:#ffebee
-    style B fill:#f3e5f5
-    style D fill:#f3e5f5
-    style F fill:#f3e5f5
-    style H fill:#f3e5f5
-    style J fill:#f3e5f5
+    style A fill:#e1f5fe,font-size:50px
+    style K fill:#ffebee,font-size:50px
+    style B fill:#f3e5f5,font-size:50px
+    style D fill:#f3e5f5,font-size:50px
+    style F fill:#f3e5f5,font-size:50px
+    style H fill:#f3e5f5,font-size:50px
+    style J fill:#f3e5f5,font-size:50px
+    style C fill:#f9f9f9,font-size:50px
+    style E fill:#f9f9f9,font-size:50px
+    style G fill:#f9f9f9,font-size:50px
+    style I fill:#f9f9f9,font-size:50px
 ```
 
 
