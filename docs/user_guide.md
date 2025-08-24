@@ -404,7 +404,7 @@ stress-run --test_config my_test.yaml
 ## Next Steps
 
 - **New to Gradual?** Start with the [Installation Guide](installation.md) and [Getting Started Guide](getting_started.md)
-- **Ready for more?** Explore the [API Reference](/gradual/api/overview/) for detailed technical information
+- **Ready for more?** Explore the [API Reference](/Gradual/api/overview/) for detailed technical information
 - **Looking for examples?** Check out [Examples](examples.md) for real-world use cases
 - **Want to contribute?** Learn about [Development](dev_guide.md)
-- **Need help?** Join the [community discussions](https://github.com/Gradual-Load-Testing/gradual/discussions)
+- **Need help?** Join the [community discussions](https://github.com/Gradual-Load-Testing/Gradual/discussions)

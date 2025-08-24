@@ -451,7 +451,7 @@ make publish
 
 ## Next Steps
 
-- Read the [API Reference](/gradual/api/overview/) for detailed technical information
+- Read the [API Reference](/Gradual/api/overview/) for detailed technical information
 - Check out [Examples](examples.md) for usage patterns
 - Review the [User Guide](user_guide.md) for end-user documentation
-- Join the [community discussions](https://github.com/Gradual-Load-Testing/gradual/discussions)
+- Join the [community discussions](https://github.com/Gradual-Load-Testing/Gradual/discussions)

@@ -242,8 +242,8 @@ python -c "import yaml; yaml.safe_load(open('config.yaml'))"
 ### Getting Help
 
 - 📖 **Documentation**: Check the [User Guide](user_guide.md) and [Configuration Reference](configuration_reference.md)
-- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/Gradual-Load-Testing/gradual/issues)
-- 💬 **Discussions**: Ask questions on [GitHub Discussions](https://github.com/Gradual-Load-Testing/gradual/discussions)
+- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/Gradual-Load-Testing/Gradual/issues)
+- 💬 **Discussions**: Ask questions on [GitHub Discussions](https://github.com/Gradual-Load-Testing/Gradual/issues)
 
 ## Congratulations!
 
