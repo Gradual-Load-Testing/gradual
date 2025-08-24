@@ -50,7 +50,27 @@ else
 endif
 
 docs:
-	cd docs && $(MAKE) html
+	@echo "Installing documentation dependencies..."
+	$(VENV_PIP) install -r requirements-docs.txt
+	@echo "Building documentation..."
+	mkdocs build
+
+docs-serve:
+	@echo "Installing documentation dependencies..."
+	$(VENV_PIP) install -r requirements-docs.txt
+	@echo "Starting documentation server..."
+	mkdocs serve
+
+docs-deploy:
+	@echo "Installing documentation dependencies..."
+	$(VENV_PIP) install -r requirements-docs.txt
+	@echo "Deploying documentation..."
+	mkdocs gh-deploy
+
+docs-api:
+	@echo "Generating API documentation..."
+	$(VENV_PYTHON) generate_api_docs.py
+	@echo "API documentation generated successfully!"
 
 lint:
 	flake8 src tests
